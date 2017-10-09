@@ -1,0 +1,14 @@
+c:\users\frede\Source\Repos\RevitAsyncDemo\Contracts\obj\Debug\Contracts.csprojResolveAssemblyReference.cache
+c:\users\frede\Source\Repos\RevitAsyncDemo\Contracts\obj\Debug\Contracts.csproj.CoreCompileInputs.cache
+c:\users\frede\Source\Repos\RevitAsyncDemo\Contracts\bin\Debug\Contracts.dll
+c:\users\frede\Source\Repos\RevitAsyncDemo\Contracts\bin\Debug\Contracts.pdb
+c:\users\frede\Source\Repos\RevitAsyncDemo\Contracts\bin\Debug\LightInject.dll
+c:\users\frede\Source\Repos\RevitAsyncDemo\Contracts\obj\Debug\Contracts.dll
+c:\users\frede\Source\Repos\RevitAsyncDemo\Contracts\obj\Debug\Contracts.pdb
+C:\Users\frede\Source\Repos\RevitAsyncDemo2\src\Contracts\bin\Debug\Contracts.dll
+C:\Users\frede\Source\Repos\RevitAsyncDemo2\src\Contracts\bin\Debug\Contracts.pdb
+C:\Users\frede\Source\Repos\RevitAsyncDemo2\src\Contracts\bin\Debug\LightInject.dll
+C:\Users\frede\Source\Repos\RevitAsyncDemo2\src\Contracts\obj\Debug\Contracts.csprojResolveAssemblyReference.cache
+C:\Users\frede\Source\Repos\RevitAsyncDemo2\src\Contracts\obj\Debug\Contracts.csproj.CoreCompileInputs.cache
+C:\Users\frede\Source\Repos\RevitAsyncDemo2\src\Contracts\obj\Debug\Contracts.dll
+C:\Users\frede\Source\Repos\RevitAsyncDemo2\src\Contracts\obj\Debug\Contracts.pdb
