@@ -38,7 +38,8 @@ namespace MyRevitAddin
 
         public Result OnShutdown(UIControlledApplication application)
         {
-            throw new NotImplementedException();
+            InitializeRevitInteractor.Unsubscribe(application);
+            return Result.Succeeded;
         }
     }
 }

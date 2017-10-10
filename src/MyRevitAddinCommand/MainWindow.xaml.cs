@@ -17,9 +17,10 @@ namespace MyRevitAddinCommand
             InitializeComponent();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private async void Button_Click(object sender, RoutedEventArgs e)
         {
-            DocumentTitle.Content = m_controller.DocumentController.Get(string.Empty);
+            var document = await m_controller.DocumentController.Get(string.Empty);
+            DocumentTitle.Content = document.Title;
         }
     }
 }

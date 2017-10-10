@@ -20,6 +20,11 @@ namespace RevitInteractors
             return serviceContainer.GetInstance<IController>();
         }
 
+     public static void Unsubscribe(UIControlledApplication application)
+        {
+            application.Idling -= Application_Idling;
+        }
+
         public static string ActiveDocumentTitle { get; set; }
 
         public static bool taskRunning = false;
