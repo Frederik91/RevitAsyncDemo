@@ -1,6 +1,10 @@
 ﻿using Autodesk.Revit.UI;
 using Autodesk.Revit.UI.Events;
+using MyProgram;
+using MyRevitAddinCommand;
+using RevitInteractors;
 using System;
+using System.Reflection;
 
 namespace MyRevitAddin
 {
@@ -11,13 +15,25 @@ namespace MyRevitAddin
     {
         public Result OnStartup(UIControlledApplication application)
         {
-            application.Idling += Application_Idling;
-            return Result.Succeeded;
-        }
+            Globals.Controller = InitializeRevitInteractor.Register(application);
+            #region Create panel
+            // create electrical Ribbon panel
+            var ribbon = application.CreateRibbonPanel("Revit Async Demo");
+            ribbon.Title = "Revit Async Demo";
+            ribbon.Visible = true;
 
-        private void Application_Idling(object sender, IdlingEventArgs e)
-        {            
-            throw new NotImplementedException();
+            #region Create a split button for switchboard schematics
+
+            //create push button for new schema
+            string thisAssemblyPath = Assembly.GetExecutingAssembly().Location;
+            var OpenAddinPush = new PushButtonData("Open window", "Open window", thisAssemblyPath, typeof(MyCommand).FullName);
+
+            ribbon.AddItem(OpenAddinPush);
+            #endregion
+
+            #endregion
+
+            return Result.Succeeded;
         }
 
         public Result OnShutdown(UIControlledApplication application)

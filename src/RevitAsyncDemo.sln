@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.27004.2000
+VisualStudioVersion = 15.0.26730.16
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "API", "API\API.csproj", "{95EA9729-C313-4AB4-AC38-E15C58085FEC}"
 EndProject
@@ -12,6 +12,11 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyRevitAddin", "MyProgram\MyRevitAddin.csproj", "{1D10D415-80F6-40AE-9786-5A3F83A66AFF}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyRevitAddinCommand", "MyRevitAddinCommand\MyRevitAddinCommand.csproj", "{A2867980-8AA6-4F9F-95CB-110AF2F42092}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{DBC1F90A-7C76-4EE4-994B-8CB4A71AF4EC}"
+	ProjectSection(SolutionItems) = preProject
+		Addin\RevitAsyncDemo.addin = Addin\RevitAsyncDemo.addin
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

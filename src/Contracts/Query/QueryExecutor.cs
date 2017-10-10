@@ -39,7 +39,7 @@ namespace Contracts.Query
 
             TResult result;
             try
-            {
+            {                
                 result = await queryHandler.HandleAsync((dynamic)query);
                 return result;
             }

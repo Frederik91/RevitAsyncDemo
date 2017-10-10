@@ -71,6 +71,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CompositionRoot.cs" />
+    <Compile Include="Globals.cs" />
     <Compile Include="MyCommand.cs" />
     <Compile Include="OnRevitStartup.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -97,4 +98,8 @@
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>echo D|xcopy /s /y "$(TargetDir)*" "C:\CAD\RevitAsyncDemo\"
+echo F|xcopy /y "$(SolutionDir)Addin\RevitAsyncDemo.addin" "C:\ProgramData\Autodesk\Revit\Addins\2017\RevitAsyncDemo.addin"</PostBuildEvent>
+  </PropertyGroup>
 </Project>

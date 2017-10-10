@@ -1,10 +1,5 @@
 ﻿using Contracts.RevitInteractors;
 using LightInject;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace RevitInteractors
 {
@@ -13,6 +8,7 @@ namespace RevitInteractors
         public void Compose(IServiceRegistry serviceRegistry)
         {
             serviceRegistry.Register<IDocumentRevitInteractor, DocumentRevitInteractor>(new PerScopeLifetime());
+            serviceRegistry.RegisterFrom<API.CompositionRoot>();
         }
     }
 }

@@ -4,23 +4,32 @@ using Contracts.Models;
 using System.Threading.Tasks;
 using Contracts;
 using Autodesk.Revit.UI;
+using Autodesk.Revit.DB;
 
 namespace RevitInteractors
 {
-    public class DocumentRevitInteractor : IDocumentRevitInteractor
+    public class DocumentRevitInteractor : RevitInteractorBase, IDocumentRevitInteractor
     {
-        Task<CW_Document> IDocumentRevitInteractor.Get(string documentTitle)
+        async Task<CW_Document> IDocumentRevitInteractor.Get(string documentTitle)
         {
+            var app = await GetApplication();
+
             // Interaction with Revit can only my made synchronously
             // Interaction with Revit can only be made through DocumentIdle event
-
-            if (string.IsNullOrEmpty(documentTitle))
+            Document document = null;
+            foreach (Document doc in app.Documents)
             {
-                var externalCommandData = ExternalCommandDataHolder.ExternalCommand as ExternalCommandData;
-                new CW_Document { Title = externalCommandData.Application.ActiveUIDocument.Document.Title };
+                if (doc.Title == InitializeRevitInteractor.ActiveDocumentTitle)
+                {
+                    document = doc;
+                    break;
+                }
             }
 
-            throw new NotImplementedException();
+            var cwDocument = new CW_Document { Title = document.Title };
+
+            ReleaseApplication();
+            return cwDocument;
         }
     }
 }

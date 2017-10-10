@@ -44,7 +44,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CompositionRoot.cs" />
+    <Compile Include="Controller.cs" />
     <Compile Include="Controllers\DocumentController.cs" />
+    <Compile Include="IController.cs" />
     <Compile Include="Models\Documents\DocumentService.cs" />
     <Compile Include="Models\Documents\DocumentQuery.cs" />
     <Compile Include="Models\Documents\DocumentQueryHandler.cs" />

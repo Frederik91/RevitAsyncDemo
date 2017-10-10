@@ -1,4 +1,4 @@
-﻿using API.Controllers;
+﻿using API;
 using System.Windows;
 
 namespace MyRevitAddinCommand
@@ -8,13 +8,18 @@ namespace MyRevitAddinCommand
     /// </summary>
     public partial class MainWindow : Window
     {
-        private readonly DocumentController m_controller;
+        private readonly IController m_controller;
 
-        public MainWindow(DocumentController controller)
+        public MainWindow(IController controller)
         {
             m_controller = controller;
-            DocumentTitle.Content = m_controller.Get(string.Empty);
+            
             InitializeComponent();
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            DocumentTitle.Content = m_controller.DocumentController.Get(string.Empty);
         }
     }
 }

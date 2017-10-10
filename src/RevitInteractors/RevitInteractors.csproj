@@ -70,8 +70,14 @@
     <Compile Include="CompositionRoot.cs" />
     <Compile Include="DocumentRevitInteractor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="InitializeRevitInteractor.cs" />
+    <Compile Include="RevitInteractorBase.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\API\API.csproj">
+      <Project>{95ea9729-c313-4ab4-ac38-e15c58085fec}</Project>
+      <Name>API</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Contracts\Contracts.csproj">
       <Project>{41935285-FDE9-41FF-AA54-AE631509BDAD}</Project>
       <Name>Contracts</Name>

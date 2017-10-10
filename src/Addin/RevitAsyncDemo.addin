@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RevitAddIns>
+  <AddIn Type="Application">
+    <Name>AsyncDemo</Name>
+    <Assembly>C:\CAD\RevitAsyncDemo\MyProgram.dll</Assembly>
+    <ClientId>44d72e6c-ff49-4cc5-9875-71aab7f09c9c</ClientId>
+    <AddInId>44d72e6c-ff49-4cc5-9875-71aab7f09c9d</AddInId>
+    <FullClassName>MyRevitAddin.OnRevitStartup</FullClassName>
+    <VendorId>FRTE</VendorId>
+    <VendorDescription>FRTE, www.cowi.com</VendorDescription>
+  </AddIn>
+</RevitAddIns>

@@ -16,6 +16,9 @@ namespace API
             serviceRegistry.Register<IQueryExecutor>(factory => new QueryExecutor((IServiceFactory)serviceRegistry, logger));
             serviceRegistry.Register<ICommandExecutor>(factory => new CommandExecutor((IServiceFactory)serviceRegistry, logger));
 
+            // Controller
+            serviceRegistry.Register<IController, Controller>();
+
             // CW_Documents
             serviceRegistry.Register<IDocumentService, DocumentService>(new PerContainerLifetime());
             serviceRegistry.Register<IQueryHandler<DocumentQuery, CW_Document>, DocumentQueryHandler>(new PerContainerLifetime());

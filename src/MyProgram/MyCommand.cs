@@ -1,8 +1,5 @@
 ﻿using Autodesk.Revit.UI;
 using Autodesk.Revit.DB;
-using Contracts;
-using LightInject;
-using API.Controllers;
 using MyRevitAddinCommand;
 
 namespace MyProgram
@@ -13,14 +10,8 @@ namespace MyProgram
     {
         public Result Execute(ExternalCommandData commandData, ref string message, ElementSet elements)
         {
-            ExternalCommandDataHolder.ExternalCommand = commandData;
-
-            var serviceContainer = new ServiceContainer();
-            serviceContainer.RegisterFrom<CompositionRoot>();
-
-            var controller = serviceContainer.GetInstance<DocumentController>();
-
-            var window = new MainWindow(controller);
+            RevitInteractors.InitializeRevitInteractor.ActiveDocumentTitle = commandData.Application.ActiveUIDocument.Document.Title;
+            var window = new MainWindow(Globals.Controller);
             window.Show();
 
             return Result.Succeeded;
