@@ -7,7 +7,7 @@ namespace RevitInteractors
     {
         public void Compose(IServiceRegistry serviceRegistry)
         {
-            serviceRegistry.Register<IDocumentRevitInteractor, DocumentRevitInteractor>(new PerScopeLifetime());
+            serviceRegistry.Register<IDocumentRevitInteractor, DocumentRevitInteractor>(new PerContainerLifetime());
             serviceRegistry.RegisterFrom<API.CompositionRoot>();
         }
     }

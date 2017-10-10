@@ -5,6 +5,6 @@ namespace Contracts.RevitInteractors
 {
     public interface IDocumentRevitInteractor
     {
-        Task<CW_Document> Get(string documentTitle);
+        CW_Document Get(string documentTitle);
     }
 }

@@ -15,7 +15,7 @@ namespace MyRevitAddin
     {
         public Result OnStartup(UIControlledApplication application)
         {
-            Globals.Controller = InitializeRevitInteractor.Register(application);
+            Globals.Controller = RevitInteractor.Register(application);
             #region Create panel
             // create electrical Ribbon panel
             var ribbon = application.CreateRibbonPanel("Revit Async Demo");
@@ -38,7 +38,7 @@ namespace MyRevitAddin
 
         public Result OnShutdown(UIControlledApplication application)
         {
-            InitializeRevitInteractor.Unsubscribe(application);
+            RevitInteractor.Unsubscribe(application);
             return Result.Succeeded;
         }
     }

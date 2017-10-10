@@ -5,10 +5,15 @@ using LightInject;
 using Autodesk.Revit.ApplicationServices;
 using System.Threading.Tasks;
 using System;
+using System.Collections.Generic;
+using System.Linq;
+using Contracts;
+using System.Threading;
+using Contracts.Query;
 
 namespace RevitInteractors
 {
-    public class InitializeRevitInteractor
+    public class RevitInteractor
     {
         public static IController Register(UIControlledApplication application)
         {
@@ -16,6 +21,9 @@ namespace RevitInteractors
             serviceContainer.RegisterFrom<CompositionRoot>();
 
             application.Idling += Application_Idling;
+
+            ExternalCommandDataHolder.Requests = new List<QueryRequest>();
+            ExternalCommandDataHolder.Responses = new List<QueryResponse>();
 
             return serviceContainer.GetInstance<IController>();
         }
@@ -25,28 +33,27 @@ namespace RevitInteractors
             application.Idling -= Application_Idling;
         }
 
-        public static string ActiveDocumentTitle { get; set; }
-
         public static bool taskRunning = false;
-        public static async Task<Application> GetApplicationAsync()
-        {
-            while (taskRunning || application == null)
-            {
-                await Task.Delay(50);
-            }
-            taskRunning = true;            
-            return application;
-        }
 
         public static void ReleaseApplication()
         {
             taskRunning = false;
         }
 
-        private static Application application;
+        public static UIApplication UIApplication { get; set; }
         private static void Application_Idling(object sender, IdlingEventArgs e)
-        {
-            application = sender as Application;
+        {            
+            if (!taskRunning && ExternalCommandDataHolder.Requests.Count > 0)
+            {
+                var request = ExternalCommandDataHolder.Requests.FirstOrDefault();
+
+                UIApplication = sender as UIApplication;
+                var result = request.Handler.Handle((dynamic)request.Query);
+
+                var response = new QueryResponse(request.Id) { Result = result };
+                ExternalCommandDataHolder.Responses.Add(response);
+                ExternalCommandDataHolder.Requests.Remove(request);
+            }
         }
     }
 }

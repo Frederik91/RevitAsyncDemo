@@ -21,6 +21,6 @@ namespace Contracts.Query
         /// <returns>
         /// The <see cref="Task"/>.
         /// </returns>
-        Task<TResult> HandleAsync(TQuery query);
+        TResult Handle(TQuery query);
     }
 }

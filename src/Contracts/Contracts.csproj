@@ -54,7 +54,9 @@
     <Compile Include="Query\IQuery.cs" />
     <Compile Include="Query\IQueryExecutor.cs" />
     <Compile Include="Query\IQueryHandler.cs" />
+    <Compile Include="Query\QueryResponse.cs" />
     <Compile Include="Query\QueryExecutor.cs" />
+    <Compile Include="Query\QueryRequest.cs" />
     <Compile Include="RevitInteractors\IDocumentRevitInteractor.cs" />
   </ItemGroup>
   <ItemGroup>

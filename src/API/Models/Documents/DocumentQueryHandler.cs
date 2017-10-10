@@ -14,9 +14,9 @@ namespace API.Models.Documents
             m_documentRevitInteractor = documentRevitInteractor;
         }
 
-        async Task<CW_Document> IQueryHandler<DocumentQuery, CW_Document>.HandleAsync(DocumentQuery query)
+        public CW_Document Handle(DocumentQuery query)
         {
-            var result = await m_documentRevitInteractor.Get(query.Title);
+            var result = m_documentRevitInteractor.Get(query.Title);
             return result;
         }
     }

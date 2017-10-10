@@ -13,16 +13,9 @@ namespace RevitInteractors
     {
         public static ExternalCommandData ExternalCommandData { get; set; }
 
-        public async Task<Application> GetApplication()
-        {
-            var application = await InitializeRevitInteractor.GetApplicationAsync();
-
-            return application;
-        }
-
         public void ReleaseApplication()
         {
-            InitializeRevitInteractor.ReleaseApplication();
+            RevitInteractor.ReleaseApplication();
         }
     }
 }

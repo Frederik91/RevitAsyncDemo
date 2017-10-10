@@ -10,7 +10,6 @@ namespace MyProgram
     {
         public Result Execute(ExternalCommandData commandData, ref string message, ElementSet elements)
         {
-            RevitInteractors.InitializeRevitInteractor.ActiveDocumentTitle = commandData.Application.ActiveUIDocument.Document.Title;
             var window = new MainWindow(Globals.Controller);
             window.Show();
 

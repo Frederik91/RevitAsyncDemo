@@ -3,6 +3,7 @@ using Contracts.Query;
 using LightInject;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
 
@@ -39,8 +40,16 @@ namespace Contracts.Query
 
             TResult result;
             try
-            {                
-                result = await queryHandler.HandleAsync((dynamic)query);
+            {
+                var request = new QueryRequest { Handler = queryHandler, Query = query };                
+                ExternalCommandDataHolder.Requests.Add(request);
+                while (!ExternalCommandDataHolder.Responses.Any(x=> x.Id == request.Id))
+                {
+                    await Task.Delay(50);
+                }
+                var response = ExternalCommandDataHolder.Responses.First(x => x.Id == request.Id);
+                ExternalCommandDataHolder.Responses.Remove(response);
+                result = response.Result;
                 return result;
             }
             catch (Exception exception)
