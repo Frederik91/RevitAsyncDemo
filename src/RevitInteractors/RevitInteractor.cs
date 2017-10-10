@@ -33,19 +33,12 @@ namespace RevitInteractors
             application.Idling -= Application_Idling;
         }
 
-        public static bool taskRunning = false;
-
-        public static void ReleaseApplication()
-        {
-            taskRunning = false;
-        }
-
         public static UIApplication UIApplication { get; set; }
         private static void Application_Idling(object sender, IdlingEventArgs e)
         {            
-            if (!taskRunning && ExternalCommandDataHolder.Requests.Count > 0)
+            if (ExternalCommandDataHolder.Requests.Count > 0)
             {
-                var request = ExternalCommandDataHolder.Requests.FirstOrDefault();
+                var request = ExternalCommandDataHolder.Requests.First();
 
                 UIApplication = sender as UIApplication;
                 var result = request.Handler.Handle((dynamic)request.Query);

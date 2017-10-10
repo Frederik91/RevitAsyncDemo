@@ -1,6 +1,10 @@
 ﻿using Autodesk.Revit.UI;
 using Autodesk.Revit.DB;
 using MyRevitAddinCommand;
+using System.Diagnostics;
+using System;
+using System.Windows;
+using System.Windows.Interop;
 
 namespace MyProgram
 {
@@ -10,7 +14,11 @@ namespace MyProgram
     {
         public Result Execute(ExternalCommandData commandData, ref string message, ElementSet elements)
         {
+
             var window = new MainWindow(Globals.Controller);
+            WindowInteropHelper wih = new WindowInteropHelper(window);
+            wih.Owner = Autodesk.Windows.ComponentManager.ApplicationWindow;
+
             window.Show();
 
             return Result.Succeeded;

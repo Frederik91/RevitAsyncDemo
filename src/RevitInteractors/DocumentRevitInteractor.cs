@@ -5,7 +5,7 @@ using Autodesk.Revit.DB;
 
 namespace RevitInteractors
 {
-    public class DocumentRevitInteractor : RevitInteractorBase, IDocumentRevitInteractor
+    public class DocumentRevitInteractor : IDocumentRevitInteractor
     {
         public CW_Document Get(string documentTitle)
         {
@@ -14,7 +14,6 @@ namespace RevitInteractors
             Document document = RevitInteractor.UIApplication.ActiveUIDocument.Document;
             var cwDocument = new CW_Document { Title = document.Title };
 
-            ReleaseApplication();
             return cwDocument;
         }
     }

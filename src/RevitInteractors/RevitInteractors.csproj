@@ -71,7 +71,6 @@
     <Compile Include="DocumentRevitInteractor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RevitInteractor.cs" />
-    <Compile Include="RevitInteractorBase.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\API\API.csproj">
