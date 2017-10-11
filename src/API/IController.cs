@@ -1,4 +1,5 @@
 ﻿using API.Controllers;
+using Contracts.Events;
 
 namespace API
 {
@@ -9,5 +10,6 @@ namespace API
         ElementController ElementController { get; }
         FilterController FilterController { get; }
         ParameterController ParameterController { get; }
+        DocumentChangedEvent DocumentChangedEvent { get; }
     }
 }

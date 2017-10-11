@@ -16,6 +16,7 @@ using System.Collections;
 using System.Collections.Concurrent;
 using System.Threading.Tasks;
 using System.Windows.Controls;
+using Contracts.Events;
 
 namespace MyRevitAddinCommand
 {
@@ -51,7 +52,7 @@ namespace MyRevitAddinCommand
                 OnPropertyChanged();
             }
         }
-        
+
         public CW_ElementMinimal SelectedElementMinimal
         {
             get => selectedElementMinimal;
@@ -99,7 +100,56 @@ namespace MyRevitAddinCommand
 
             UpdateParametersCommand = new RelayCommand(O => { UpdateParameters(); }, O => HasChanges());
 
+            Closing += MainWindow_Closing;
+            controller.DocumentChangedEvent.OnDocumentChanged += DocumentChangedEvent_OnDocumentChanged;
+
             InitializeComponent();
+        }
+
+        private void DocumentChangedEvent_OnDocumentChanged(DocumentChangedEventArgs e)
+        {
+            GetDocumentChanges(e);
+        }
+
+        private void MainWindow_Closing(object sender, CancelEventArgs e)
+        {
+            m_controller.DocumentChangedEvent.OnDocumentChanged -= DocumentChangedEvent_OnDocumentChanged;
+        }
+
+        private async void GetDocumentChanges(DocumentChangedEventArgs e)
+        {
+            if (ElementsInSelectedCategory != null)
+            {
+                foreach (var addedElementId in e.AddedElementIds)
+                {
+                    var addedElement = await m_controller.ElementController.Get(e.DocumentTitle, addedElementId);
+                    if (addedElement.Category.Name == SelectedCategory.Name)
+                    {
+                        ElementsInSelectedCategory.Add(new CW_ElementMinimal { Name = addedElement.Name, DocumentTitle = addedElement.Document.Title, Id = addedElement.Id, UniqueId = addedElement.UniqueId });
+                    }
+                }
+
+                foreach (var modifiedElementId in e.ModifiedElementIds)
+                {
+                    if (ElementsInSelectedCategory.Any(x => x.Id == modifiedElementId))
+                    {
+                        var oldElement = ElementsInSelectedCategory.First(x => x.Id == modifiedElementId);
+                        ElementsInSelectedCategory.Remove(oldElement);
+                        var newElement = await m_controller.ElementController.Get(e.DocumentTitle, modifiedElementId);
+                        var newElementMinimal = new CW_ElementMinimal { Name = newElement.Name, DocumentTitle = newElement.Document.Title, Id = newElement.Id, UniqueId = newElement.UniqueId };
+                        ElementsInSelectedCategory.Add(newElementMinimal);
+                    }
+                }
+
+                foreach (var deletedElementId in e.DeletedElementIds)
+                {
+                    if (ElementsInSelectedCategory.Any(x => x.Id == deletedElementId))
+                    {
+                        var oldElement = ElementsInSelectedCategory.First(x => x.Id == deletedElementId);
+                        ElementsInSelectedCategory.Remove(oldElement);
+                    }
+                }
+            }
         }
 
         private bool HasChanges()

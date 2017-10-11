@@ -55,6 +55,8 @@
     <Compile Include="Enums\CW_UnitType.cs" />
     <Compile Include="Enums\FilterType.cs" />
     <Compile Include="Enums\OperatorTypes.cs" />
+    <Compile Include="Events\DocumentChangedEvent.cs" />
+    <Compile Include="Events\DocumentChangedEventArgs.cs" />
     <Compile Include="ExternalCommandDataHolder.cs" />
     <Compile Include="Filtering\Filter.cs" />
     <Compile Include="Filtering\IFilter.cs" />

@@ -4,6 +4,7 @@ using API.Models.Documents;
 using API.Models.Elements;
 using API.Models.Filters;
 using API.Models.Parameters;
+using Contracts.Events;
 
 namespace API
 {
@@ -14,8 +15,9 @@ namespace API
         public ElementController ElementController { get; }
         public FilterController FilterController { get; }
         public ParameterController ParameterController { get; }
+        public DocumentChangedEvent DocumentChangedEvent { get; }
 
-        public Controller(ICategoryService categoryService, IDocumentService documentService, IElementService elementService, IFilterService filterService, IParameterService parameterService)
+        public Controller(ICategoryService categoryService, IDocumentService documentService, IElementService elementService, IFilterService filterService, IParameterService parameterService, DocumentChangedEvent DocumentChangedEvent)
         {
             CategoryController = new CategoryController(categoryService);
             DocumentController = new DocumentController(documentService);

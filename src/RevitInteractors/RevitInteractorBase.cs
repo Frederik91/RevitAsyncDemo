@@ -57,12 +57,5 @@ namespace RevitInteractors
         {
             return UIApplication;
         }
-
-        public static RevitLinkInstance GetLinkByDocumentTitle(string documentTitle)
-        {
-            var links = new FilteredElementCollector(UIApplication.ActiveUIDocument.Document).WherePasses(new ElementClassFilter(typeof(RevitLinkInstance))).OfType<RevitLinkInstance>();
-            var link = links.FirstOrDefault(x => x.GetLinkDocument() is Document doc && doc.Title.Contains(documentTitle));
-            return link;
-        }
     }
 }

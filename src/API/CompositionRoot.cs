@@ -11,6 +11,7 @@ using API.Models.Categories;
 using API.Models.Elements;
 using API.Models.Parameters;
 using CW_Revit.Models.Parameters;
+using Contracts.Events;
 
 namespace API
 {
@@ -38,6 +39,9 @@ namespace API
             serviceRegistry.Register<IElementService, ElementService>(new PerContainerLifetime());
             serviceRegistry.Register<IQueryHandler<ElementQuery, IEnumerable<CW_Element>>, ElementQueryHandler>(new PerContainerLifetime());
             serviceRegistry.Register<ICommandHandler<DeleteElementCommand>, DeleteElementCommandHandler>(new PerContainerLifetime());
+
+            // Event
+            serviceRegistry.Register<DocumentChangedEvent>(new PerContainerLifetime());
 
             // Filtering
             serviceRegistry.Register<IFilterService, FilterService>(new PerContainerLifetime());
