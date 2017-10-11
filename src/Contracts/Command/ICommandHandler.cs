@@ -14,6 +14,6 @@ namespace Contracts.Command
         /// </summary>
         /// <param name="command">THe command to handle.</param>
         /// <returns><see cref="Task"/>.</returns>
-        Task Handle(TCommand command);
+        void Handle(TCommand command);
     }
 }

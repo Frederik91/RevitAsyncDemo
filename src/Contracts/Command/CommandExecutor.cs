@@ -29,9 +29,16 @@ namespace Contracts.Command
         /// <returns><see cref="Task"/>.</returns>
         public async Task Execute<TCommand>(TCommand command)
         {
+            var commandHandler = factory.GetInstance<ICommandHandler<TCommand>>();
             try
             {
-                await factory.GetInstance<ICommandHandler<TCommand>>().Handle(command);
+                var request = new CommandRequest { Handler = commandHandler, Command = command };
+                ExternalCommandDataHolder.CommandRequests.Add(request);
+
+                while (ExternalCommandDataHolder.CommandRequests.Contains(request))
+                {
+                    await Task.Delay(50);
+                }
             }
             catch (Exception exception)
             {

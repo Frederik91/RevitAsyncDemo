@@ -44,12 +44,30 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Command\CommandExecutor.cs" />
+    <Compile Include="Command\CommandRequest.cs" />
     <Compile Include="Command\ICommandExecutor.cs" />
     <Compile Include="Command\ICommandHandler.cs" />
+    <Compile Include="Enums\CompareTypes.cs" />
+    <Compile Include="Enums\CW_CategoryType.cs" />
+    <Compile Include="Enums\CW_ParameterLevel.cs" />
+    <Compile Include="Enums\CW_ParameterType.cs" />
+    <Compile Include="Enums\CW_StorageType.cs" />
+    <Compile Include="Enums\CW_UnitType.cs" />
+    <Compile Include="Enums\FilterType.cs" />
+    <Compile Include="Enums\OperatorTypes.cs" />
     <Compile Include="ExternalCommandDataHolder.cs" />
+    <Compile Include="Filtering\Filter.cs" />
+    <Compile Include="Filtering\IFilter.cs" />
     <Compile Include="Logging\ILogger.cs" />
     <Compile Include="Logging\Logger.cs" />
+    <Compile Include="MinimalModels\CW_ElementMinimal.cs" />
+    <Compile Include="Models\CW_Category.cs" />
+    <Compile Include="Models\CW_Definition.cs" />
     <Compile Include="Models\CW_Document.cs" />
+    <Compile Include="Models\CW_Element.cs" />
+    <Compile Include="Models\CW_ExternalDefinition.cs" />
+    <Compile Include="Models\CW_InternalDefinition.cs" />
+    <Compile Include="Models\CW_Parameter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Query\IQuery.cs" />
     <Compile Include="Query\IQueryExecutor.cs" />
@@ -57,11 +75,19 @@
     <Compile Include="Query\QueryResponse.cs" />
     <Compile Include="Query\QueryExecutor.cs" />
     <Compile Include="Query\QueryRequest.cs" />
+    <Compile Include="Requests\DeleteElementRequest.cs" />
+    <Compile Include="Requests\SetParameterRequest.cs" />
+    <Compile Include="RevitInteractors\ICategoryRevitInteractor.cs" />
     <Compile Include="RevitInteractors\IDocumentRevitInteractor.cs" />
+    <Compile Include="RevitInteractors\IElementRevitInteractor.cs" />
+    <Compile Include="RevitInteractors\IFilterRevitInteractor.cs" />
+    <Compile Include="RevitInteractors\IParameterRevitInteractor.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Responses\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

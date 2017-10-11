@@ -3,7 +3,7 @@ using Contracts.Models;
 using System.Threading.Tasks;
 using Autodesk.Revit.DB;
 
-namespace RevitInteractors
+namespace RevitInteractors.Interactors
 {
     public class DocumentRevitInteractor : IDocumentRevitInteractor
     {

@@ -67,10 +67,20 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Interactors\CategoryRevitInteractor.cs" />
     <Compile Include="CompositionRoot.cs" />
-    <Compile Include="DocumentRevitInteractor.cs" />
+    <Compile Include="Interactors\DocumentRevitInteractor.cs" />
+    <Compile Include="Interactors\ElementRevitInteractor.cs" />
+    <Compile Include="Filtering\FilterExecutor.cs" />
+    <Compile Include="Filtering\FilterRuleProvider.cs" />
+    <Compile Include="Filtering\FilterUtils.cs" />
+    <Compile Include="Interactors\FilterRevitInteractor.cs" />
+    <Compile Include="Interactors\ParameterRevitInteractor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RevitInteractor.cs" />
+    <Compile Include="RevitInteractorBase.cs" />
+    <Compile Include="RvtToCwElementConverter.cs" />
+    <Compile Include="RvtToCwElementMinimalConverter.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\API\API.csproj">

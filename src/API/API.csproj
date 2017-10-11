@@ -46,11 +46,33 @@
     <Compile Include="CompositionRoot.cs" />
     <Compile Include="Controller.cs" />
     <Compile Include="Controllers\DocumentController.cs" />
+    <Compile Include="Controllers\ElementController.cs" />
+    <Compile Include="Controllers\FilterController.cs" />
     <Compile Include="IController.cs" />
+    <Compile Include="Controllers\CategoryController.cs" />
+    <Compile Include="Models\Categories\CategoryQuery.cs" />
+    <Compile Include="Models\Categories\CategoryQueryHandler.cs" />
+    <Compile Include="Models\Categories\CategoryService.cs" />
+    <Compile Include="Models\Categories\ICategoryService.cs" />
     <Compile Include="Models\Documents\DocumentService.cs" />
     <Compile Include="Models\Documents\DocumentQuery.cs" />
     <Compile Include="Models\Documents\DocumentQueryHandler.cs" />
     <Compile Include="Models\Documents\IDocumentService.cs" />
+    <Compile Include="Models\Elements\DeleteElementCommand.cs" />
+    <Compile Include="Models\Elements\DeleteElementCommandHandler.cs" />
+    <Compile Include="Models\Elements\ElementQuery.cs" />
+    <Compile Include="Models\Elements\ElementQueryHandler.cs" />
+    <Compile Include="Models\Elements\ElementService.cs" />
+    <Compile Include="Models\Elements\IElementService.cs" />
+    <Compile Include="Models\Filters\FilterMinimalQuery.cs" />
+    <Compile Include="Models\Filters\FilterMinimalQueryHandler.cs" />
+    <Compile Include="Models\Filters\FilterService.cs" />
+    <Compile Include="Models\Filters\IFilterService.cs" />
+    <Compile Include="Controllers\ParameterController.cs" />
+    <Compile Include="Models\Parameters\IParameterService.cs" />
+    <Compile Include="Models\Parameters\ParameterCommand.cs" />
+    <Compile Include="Models\Parameters\ParameterCommandHandler.cs" />
+    <Compile Include="Models\Parameters\ParameterService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -62,5 +84,6 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

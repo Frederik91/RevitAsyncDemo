@@ -42,7 +42,7 @@ namespace Contracts.Query
             try
             {
                 var request = new QueryRequest { Handler = queryHandler, Query = query };                
-                ExternalCommandDataHolder.Requests.Add(request);
+                ExternalCommandDataHolder.QueryRequests.Add(request);
                 while (!ExternalCommandDataHolder.Responses.Any(x=> x.Id == request.Id))
                 {
                     await Task.Delay(50);

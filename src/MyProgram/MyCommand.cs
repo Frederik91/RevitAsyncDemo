@@ -12,16 +12,29 @@ namespace MyProgram
     [Autodesk.Revit.Attributes.Regeneration(Autodesk.Revit.Attributes.RegenerationOption.Manual)]
     public class MyCommand : IExternalCommand
     {
+        private static MainWindow Window { get; set; }
+
         public Result Execute(ExternalCommandData commandData, ref string message, ElementSet elements)
         {
 
-            var window = new MainWindow(Globals.Controller);
-            WindowInteropHelper wih = new WindowInteropHelper(window);
+            Window = new MainWindow(Globals.Controller);
+            WindowInteropHelper wih = new WindowInteropHelper(Window);
             wih.Owner = Autodesk.Windows.ComponentManager.ApplicationWindow;
 
-            window.Show();
+            
+            Window.Dispatcher.UnhandledException += Dispatcher_UnhandledException;
+                       
+
+            Window.Show();
 
             return Result.Succeeded;
+        }
+
+        private void Dispatcher_UnhandledException(object sender, System.Windows.Threading.DispatcherUnhandledExceptionEventArgs e)
+        {
+            Window?.Close();
+            TaskDialog.Show("MyTestAddin crash", e.Exception.Message);
+            e.Handled = true;
         }
     }
 }
