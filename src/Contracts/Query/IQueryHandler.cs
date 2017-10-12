@@ -1,6 +1,4 @@
-﻿using System.Threading.Tasks;
-
-namespace Contracts.Query
+﻿namespace Contracts.Query
 {
 
     /// <summary>
