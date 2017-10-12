@@ -23,6 +23,14 @@ namespace RevitInteractors.Interactors
                     var typeElements = new FilteredElementCollector(document).WhereElementIsElementType();
                     rvtElements.AddRange(typeElements);
                 }
+                else if (int.TryParse(uniqueId, out int elementId))
+                {
+                    var element = document.GetElement(new ElementId(elementId));
+                    if (element != null)
+                    {
+                        rvtElements.Add(element);
+                    }
+                }
                 else
                 {
                     var element = document.GetElement(uniqueId);

@@ -17,13 +17,14 @@ namespace API
         public ParameterController ParameterController { get; }
         public DocumentChangedEvent DocumentChangedEvent { get; }
 
-        public Controller(ICategoryService categoryService, IDocumentService documentService, IElementService elementService, IFilterService filterService, IParameterService parameterService, DocumentChangedEvent DocumentChangedEvent)
+        public Controller(ICategoryService categoryService, IDocumentService documentService, IElementService elementService, IFilterService filterService, IParameterService parameterService, DocumentChangedEvent documentChangedEvent)
         {
             CategoryController = new CategoryController(categoryService);
             DocumentController = new DocumentController(documentService);
             ElementController = new ElementController(elementService);
             FilterController = new FilterController(filterService);
             ParameterController = new ParameterController(parameterService);
+            DocumentChangedEvent = documentChangedEvent;
         }
     }
 }

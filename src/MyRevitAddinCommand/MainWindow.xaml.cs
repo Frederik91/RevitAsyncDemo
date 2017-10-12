@@ -134,10 +134,15 @@ namespace MyRevitAddinCommand
                     if (ElementsInSelectedCategory.Any(x => x.Id == modifiedElementId))
                     {
                         var oldElement = ElementsInSelectedCategory.First(x => x.Id == modifiedElementId);
-                        ElementsInSelectedCategory.Remove(oldElement);
                         var newElement = await m_controller.ElementController.Get(e.DocumentTitle, modifiedElementId);
                         var newElementMinimal = new CW_ElementMinimal { Name = newElement.Name, DocumentTitle = newElement.Document.Title, Id = newElement.Id, UniqueId = newElement.UniqueId };
+                        ElementsInSelectedCategory.Remove(oldElement);
                         ElementsInSelectedCategory.Add(newElementMinimal);
+                        if (SelectedElement?.Id == modifiedElementId)
+                        {
+                            SelectedElementMinimal = newElementMinimal;
+                            GetSelectedElement();
+                        }
                     }
                 }
 

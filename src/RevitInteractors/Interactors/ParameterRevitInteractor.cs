@@ -79,37 +79,35 @@ namespace RevitInteractors.Interactors
             }
         }
 
-        private static void SetParameter(Parameter parameter, dynamic value)
+        private static void SetParameter(Parameter parameter, string value)
         {
             switch (parameter.StorageType)
             {
                 case StorageType.Integer:
-                    if (parameter.AsInteger() == value)
+                    if (int.TryParse(value, out int integerValue) && parameter.AsInteger() != integerValue)
                     {
-                        return;
+                        parameter.Set(integerValue);
                     }
                     break;
                 case StorageType.Double:
-                    if (parameter.AsDouble() == value)
+                    if (double.TryParse(value, out double doubleValue) && parameter.AsDouble() != doubleValue)
                     {
-                        return;
+                        parameter.Set(doubleValue);
                     }
                     break;
                 case StorageType.String:
-                    if (parameter.AsString() == value)
+                    if (parameter.AsString() != value)
                     {
-                        return;
+                        parameter.Set(value);
                     }
                     break;
                 case StorageType.ElementId:
-                    if (parameter.AsElementId()?.IntegerValue != value)
+                    if (int.TryParse(value, out int elementIdIntegerValue) && parameter.AsElementId()?.IntegerValue != elementIdIntegerValue)
                     {
-                        parameter.Set(new ElementId(value));
-                        return;
+                        parameter.Set(new ElementId(elementIdIntegerValue));
                     }
                     break;
             }
-            parameter.Set(value);
         }
     }
 }

@@ -62,36 +62,40 @@ namespace RevitInteractors
 
             if (ExternalCommandDataHolder.QueryRequests.Count > 0)
             {
+                var request = ExternalCommandDataHolder.QueryRequests.First();
                 try
-                {
-                    var request = ExternalCommandDataHolder.QueryRequests.First();
-
+                {                   
                     var result = request.Handler.Handle((dynamic)request.Query);
 
                     var response = new QueryResponse(request.Id) { Result = result };
                     ExternalCommandDataHolder.Responses.Add(response);
-                    ExternalCommandDataHolder.QueryRequests.Remove(request);
                 }
 
                 catch (Exception ex)
                 {
                     throw ex;
                 }
+                finally
+                {
+                    ExternalCommandDataHolder.QueryRequests.Remove(request);
+                }
+
             }
 
             if (ExternalCommandDataHolder.CommandRequests.Count > 0)
             {
+                var request = ExternalCommandDataHolder.CommandRequests.First();
                 try
-                {
-                    var request = ExternalCommandDataHolder.CommandRequests.First();
-
-                    UIApplication = sender as UIApplication;
+                {                   
                     request.Handler.Handle((dynamic)request.Command);
-                    ExternalCommandDataHolder.CommandRequests.Remove(request);
                 }
                 catch (Exception ex)
                 {
                     throw ex;
+                }
+                finally
+                {
+                    ExternalCommandDataHolder.CommandRequests.Remove(request);
                 }
             }
             UIApplication = null;
