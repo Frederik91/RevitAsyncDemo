@@ -18,10 +18,12 @@ namespace MyProgram
         {
 
             Window = new MainWindow(Globals.Controller);
-            WindowInteropHelper wih = new WindowInteropHelper(Window);
-            wih.Owner = Autodesk.Windows.ComponentManager.ApplicationWindow;
+            WindowInteropHelper wih = new WindowInteropHelper(Window)
+            {
+                Owner = Autodesk.Windows.ComponentManager.ApplicationWindow
+            };
 
-            
+
             Window.Dispatcher.UnhandledException += Dispatcher_UnhandledException;
                        
 
